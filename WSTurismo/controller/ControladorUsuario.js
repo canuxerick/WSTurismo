@@ -25,12 +25,12 @@ module.exports=function(modelo){
 
 		},
 		listar:function(req,respuesta){
-			modelo.sequelize.query("CALL verUsuario("+req.params.id+");").then(function(data){
+			modelo.sequelize.query("CALL listarUsuario").then(function(data){
 					respuesta.json(data);
 			}).error(function(err){
 				respuesta.send({"mensaje":"Error "+err,"status":"500"});
 			});
-		},
+		},	
 		tokenGenerator:function(peticion,respuesta){
 			var token=jwt.sign({company:'Kinal'},'S3CUR3@APP');
 			respuesta.send(token);
